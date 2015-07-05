@@ -8,3 +8,10 @@ sample_splitting=function(seed,data_frame,dep_variable,split_ratio){
         train<<-subset(data_frame,split==TRUE)
         test<<-subset(data_frame,split==FALSE)
 }
+
+auc=function(predictions, tested_outcomes){
+        library(ROCR)
+        ROCRpred=prediction(predictions, tested_outcomes)
+        as.numeric(performance(ROCRpred, "auc")@y.values)
+        
+}
